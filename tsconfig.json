@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "baseUrl": "./src",
     "target": "es2015",
+=======
+    "target": "es5",
+>>>>>>> 68b80b5a4c78ae78c6331018acda10b060770d68
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,5 +21,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+<<<<<<< HEAD
   "include": ["src"]
+=======
+  "include": ["src", "src/index.tsx", "react-app-env.d.ts"]
+>>>>>>> 68b80b5a4c78ae78c6331018acda10b060770d68
 }
