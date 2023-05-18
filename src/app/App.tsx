@@ -1,5 +1,5 @@
 import React from "react";
-import { LogInForm } from "../widgets/LogIn/ui";
+import { LogInForm } from "../Login";
 
 function App() {
   return (
