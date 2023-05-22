@@ -2,6 +2,7 @@ import { Button, Typography } from "@mui/material";
 import useStore from "app/hooks/useStore";
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
+import { AppointmentFiltersForm } from "widgets/appointmentFiltersForm";
 
 export const MainPage: FC = observer(() => {
   const { posts, user } = useStore();
@@ -36,6 +37,7 @@ export const MainPage: FC = observer(() => {
       </Button>
       <Typography>{JSON.stringify(posts)}</Typography>
       <Typography>{JSON.stringify(user)}</Typography>
+      <AppointmentFiltersForm />
     </>
   );
 });
