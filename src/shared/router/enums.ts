@@ -1,4 +1,5 @@
 export enum RoterPath {
   MAIN = "/",
-  LOGIN = "/login",
+  CONTENT = "/content",
+  DETAILED_INFO = "/detailed-info",
 }
