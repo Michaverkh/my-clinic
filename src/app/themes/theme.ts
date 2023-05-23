@@ -22,8 +22,9 @@ export const theme = createTheme({
       fontWeight: "bold",
     },
     h2: {
-      fontSize: 36,
+      fontSize: 20,
       fontWeight: "bold",
+      color: "#82B1FF",
     },
     h3: {
       fontSize: 24,
@@ -63,7 +64,7 @@ export const theme = createTheme({
           props: { variant: "h1" },
           style: {
             //   color: grey[200],
-            fontSize: 70,
+            // fontSize: 70,
             // fontWeight: 800,
             // textShadow: '2px 2px black',
           },
@@ -72,7 +73,7 @@ export const theme = createTheme({
           props: { variant: "h2" },
           style: {
             // display: 'none',
-            fontSize: "10px!important",
+            // fontSize: "10px!important",
           },
           //   style: {
           //     //   color: grey[200],

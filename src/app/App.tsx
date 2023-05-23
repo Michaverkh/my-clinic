@@ -1,20 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { Box } from "@mui/material";
 import { MainPage } from "pages/main";
-import { LoginPage } from "pages/login";
-import { RoterPath } from "shared/router/enums";
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <ul>
-        <Link to={RoterPath.MAIN}>Главная</Link>
-        <Link to={RoterPath.LOGIN}>Войти</Link>
-      </ul>
-      <Routes>
-        <Route path={RoterPath.MAIN} element={<MainPage />} />
-        <Route path={RoterPath.LOGIN} element={<LoginPage />} />
-      </Routes>
+      <Box sx={{ height: "100vh" }} className="App">
+        <MainPage />
+      </Box>
     </BrowserRouter>
   );
 }
