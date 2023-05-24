@@ -7,14 +7,18 @@ export const UploadPage: FC = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        // height: "100vh",
       }}
     >
       <Button
         variant="contained"
         onClick={() => console.log("upload data")}
+        color="secondary"
         size="large"
+        sx={{
+          marginTop: "100px",
+          height: "50px",
+        }}
       >
         Загрузить данные
       </Button>

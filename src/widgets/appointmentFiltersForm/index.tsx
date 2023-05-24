@@ -1,1 +1,0 @@
-export { AppointmentFiltersForm } from "./AppointmentFiltersForm";

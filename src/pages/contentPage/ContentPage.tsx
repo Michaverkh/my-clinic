@@ -5,11 +5,12 @@ import { UploadPage } from "pages/upLoadPage";
 
 export const ContentPage: FC = () => {
   // локальный стейт - тестовый. В дальнейшем состояние брать из mobX
-  const [isDataSetUploaded, setIsDataSetUploaded] = useState<boolean>(false);
+  const [isDataSetUploaded, setIsDataSetUploaded] = useState<boolean>(true);
   return (
     <Box
       sx={{
         padding: "48px 144px",
+        height: "100%",
       }}
     >
       {isDataSetUploaded ? <ViewDataPage /> : <UploadPage />}

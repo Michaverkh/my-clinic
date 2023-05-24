@@ -6,7 +6,7 @@ import { RoterPath } from "shared/router/enums";
 
 export const AppHeader: FC = () => {
   return (
-    <Link className="navbar-brand" to={RoterPath.MAIN} title="Main">
+    <Link to={RoterPath.TABLE} title="Main">
       <Box
         sx={{
           display: "flex",
