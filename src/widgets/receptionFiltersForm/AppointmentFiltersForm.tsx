@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
-import React, { FC } from "react";
+import { FC } from "react";
 import { Formik } from "formik";
-import * as yup from "yup";
 import { InputBase } from "shared/components/inputBase";
 import {
   Button,
@@ -10,42 +9,15 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
-import { IOption } from "shared/interfaces";
-
-interface IReceptionFiltersValues {
-  clientId?: number;
-  specialisation?: string[];
-}
-
-const receptionInitialValues: IReceptionFiltersValues = {
-  clientId: 0,
-  specialisation: [],
-};
-
-const receptionFiltersSchema = yup.object().shape({
-  clientId: yup.number().typeError("Неверный формат"),
-});
-
-const specialisationOptions: IOption[] = [
-  {
-    label: "отоларинголог",
-    value: "otolaryngology",
-  },
-  {
-    label: "кардиолог",
-    value: "cardiology",
-  },
-  {
-    label: "невролог",
-    value: "neurology",
-  },
-];
+import { FormikDatePicker } from "shared/components/datePicker";
+import {
+  receptionFiltersSchema,
+  receptionInitialValues,
+  specialisationOptions,
+} from "./constants";
+import { handleSubmit } from "./handlers";
 
 export const ReceptionFiltersForm: FC = () => {
-  const handleSubmit = (values: IReceptionFiltersValues): void => {
-    console.log(values);
-  };
-
   return (
     <Box>
       <Formik
@@ -70,7 +42,6 @@ export const ReceptionFiltersForm: FC = () => {
                 name="clientId"
                 error={!!touched.clientId && !!errors.clientId}
                 helperText={touched.clientId && errors.clientId}
-                size="small"
               />
               <FormControl>
                 <InputLabel id="specialisation-id">Специализация</InputLabel>
@@ -80,7 +51,6 @@ export const ReceptionFiltersForm: FC = () => {
                   value={values.specialisation}
                   label="Специализация"
                   name="specialisation"
-                  size="small"
                   multiple
                 >
                   {specialisationOptions.map((option) => (
@@ -90,7 +60,8 @@ export const ReceptionFiltersForm: FC = () => {
                   ))}
                 </Select>
               </FormControl>
-              <FormControl></FormControl>
+              <FormikDatePicker label="Дата от" name="dateFrom" />
+              <FormikDatePicker label="Дата до" name="dateTo" />
             </Box>
             <Box display="flex" justifyContent="flex-end" mt="20px">
               <Button

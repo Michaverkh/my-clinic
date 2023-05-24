@@ -7,7 +7,6 @@ export const UploadPage: FC = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        // height: "100vh",
       }}
     >
       <Button

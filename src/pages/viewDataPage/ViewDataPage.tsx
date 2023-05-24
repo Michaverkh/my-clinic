@@ -12,6 +12,11 @@ import { RoterPath } from "shared/router/enums";
 import { TableWidget } from "widgets/tableWidget";
 import { DashboardWidget } from "widgets/dashboardWidget";
 
+/**
+ * To do:
+ * Список приемов вынести в отдельный компонент
+ */
+
 export const ViewDataPage: FC = () => {
   const navigate = useNavigate();
 
