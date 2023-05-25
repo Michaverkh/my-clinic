@@ -1,5 +1,5 @@
 import { createTheme, experimental_sx as sx } from "@mui/material";
-import { DARK1, LIGHT1 } from "./colors";
+import { DARK1, LIGHT1, SKY1 } from "./colors";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -13,17 +13,23 @@ export const theme = createTheme({
       main: DARK1,
     },
     secondary: {
+      main: SKY1,
+    },
+    info: {
       main: LIGHT1,
     },
   },
+
   typography: {
     h1: {
-      fontSize: 48,
-      fontWeight: "bold",
+      fontSize: 34,
+      fontWeight: "400",
+      color: DARK1,
     },
     h2: {
-      fontSize: 36,
+      fontSize: 20,
       fontWeight: "bold",
+      color: SKY1,
     },
     h3: {
       fontSize: 24,
@@ -63,7 +69,7 @@ export const theme = createTheme({
           props: { variant: "h1" },
           style: {
             //   color: grey[200],
-            fontSize: 70,
+            // fontSize: 70,
             // fontWeight: 800,
             // textShadow: '2px 2px black',
           },
@@ -72,7 +78,7 @@ export const theme = createTheme({
           props: { variant: "h2" },
           style: {
             // display: 'none',
-            fontSize: "10px!important",
+            // fontSize: "10px!important",
           },
           //   style: {
           //     //   color: grey[200],

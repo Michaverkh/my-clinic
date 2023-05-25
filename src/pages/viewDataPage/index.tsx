@@ -1,0 +1,1 @@
+export { ViewDataPage } from "./ViewDataPage";
