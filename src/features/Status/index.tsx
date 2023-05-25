@@ -4,7 +4,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { FC } from "react";
-import { EReceptions } from "widgets/tableWidget/data";
+import { EAppointment, EReceptions } from "widgets/tableWidget/data";
 import { Box, Tooltip, styled } from "@mui/material";
 
 const RedBox = styled(Box)({
@@ -50,32 +50,33 @@ const GrayBox = styled(Box)({
   margin: "4px",
 });
 
-export const Status: FC<{ status: EReceptions[] }> = ({ status }) => {
+export const Status: FC<{ status: string[] }> = ({ status }) => {
+  console.log(JSON.stringify(status));
   return (
     <Box sx={{ display: "flex" }}>
-      {status.includes(EReceptions.PoorQuality) && (
-        <Tooltip title="PoorQuality" key={EReceptions.PoorQuality}>
+      {status.includes(EAppointment.Excess) && (
+        <Tooltip title="Excess" key={EAppointment.Excess}>
           <BlueBox>
             <ArrowDownwardIcon color="info" fontSize="small" />
           </BlueBox>
         </Tooltip>
       )}
-      {status.includes(EReceptions.Standart) && (
-        <Tooltip title="Standart" key={EReceptions.Standart}>
+      {status.includes(EAppointment.Standard) && (
+        <Tooltip title="Standard" key={EAppointment.Standard}>
           <OrangeBox>
             <SwapHorizIcon color="info" fontSize="small" />
           </OrangeBox>
         </Tooltip>
       )}
-      {status.includes(EReceptions.SubOptimal) && (
-        <Tooltip title="SubOptimal" key={EReceptions.SubOptimal}>
+      {status.includes(EAppointment.Missing) && (
+        <Tooltip title="Missing" key={EAppointment.Missing}>
           <RedBox>
             <ArrowUpwardIcon color="info" fontSize="small" />
           </RedBox>
         </Tooltip>
       )}
-      {status.includes(EReceptions.Unverifiable) && (
-        <Tooltip title="Unverifiable" key={EReceptions.Unverifiable}>
+      {status.includes(EAppointment.Possible) && (
+        <Tooltip title="Possible" key={EAppointment.Possible}>
           <GrayBox>
             <CloseIcon color="info" fontSize="small" />
           </GrayBox>

@@ -93,6 +93,7 @@ class ApiService {
     try {
       (await responseSchema.validate(data)) as R;
     } catch (e) {
+      console.log("Validation ERROR: ", e);
       throw new ValidationError(e as YupValidationError, "url_path");
     }
   }
@@ -128,7 +129,7 @@ class ApiService {
     headers?: HeadersInit
   ): Promise<R> {
     //прерываем предыдущие запросы
-    this.cancelRequest(url, options.tag);
+    // this.cancelRequest(url, options.tag);
 
     const result: R = await this.fetchRequest<P, R>(
       EHttpMethods.GET,

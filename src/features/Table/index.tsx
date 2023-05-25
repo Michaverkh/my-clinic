@@ -11,13 +11,14 @@ import { Data, HeadCell, Order } from "./interfaces";
 import { TableHeader } from "./Header";
 import { FC, useState } from "react";
 import { TablePaginationActions } from "./Pagination";
+import { observer } from "mobx-react-lite";
 
 interface IProps {
   headCells: readonly HeadCell[];
   rows: Data[];
 }
 
-export const EnhancedTable: FC<IProps> = ({ headCells, rows }) => {
+export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<keyof Data>("date");
   const [page, setPage] = useState(0);
@@ -113,4 +114,4 @@ export const EnhancedTable: FC<IProps> = ({ headCells, rows }) => {
       </Paper>
     </Box>
   );
-};
+});

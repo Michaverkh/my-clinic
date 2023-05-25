@@ -1,8 +1,13 @@
 import { rest } from "msw";
 import posts from "./data/posts.json";
 import user from "./data/user.json";
+import receptions from "./data/receptions.json";
 import { EEndpoints } from "shared/api/enums";
+
 export const handlers = [
+  rest.get(EEndpoints.GET_RECEPTIONS_LIST, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(receptions), ctx.delay(1000));
+  }),
   rest.get(EEndpoints.GET_POSTS, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(posts), ctx.delay(1000));
   }),
