@@ -1,4 +1,5 @@
 export enum EEndpoints {
+  GET_RECEPTIONS_LIST = "reception/list",
   GET_POSTS = "posts",
   GET_USER = "user",
   LOGIN = "login",
