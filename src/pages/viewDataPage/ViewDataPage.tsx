@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -19,6 +19,7 @@ import { DashboardWidget } from "widgets/dashboardWidget";
 
 export const ViewDataPage: FC = () => {
   const navigate = useNavigate();
+  const [header, setHeader] = useState<string>("Список приемов");
 
   useEffect(() => {
     navigate(RoterPath.TABLE);
@@ -33,15 +34,21 @@ export const ViewDataPage: FC = () => {
           marginBottom: "48px",
         }}
       >
-        <Typography variant="h1">Список приемов</Typography>
+        <Typography variant="h1">{header}</Typography>
         <ToggleButtonGroup exclusive>
           <Link to={RoterPath.TABLE} title="Table">
-            <ToggleButton value="table">
+            <ToggleButton
+              value="table"
+              onClick={() => setHeader("Список приемов")}
+            >
               <MenuIcon color="primary" />
             </ToggleButton>
           </Link>
           <Link to={RoterPath.DASHBOARD} title="DashBoard">
-            <ToggleButton value="dashboard">
+            <ToggleButton
+              value="dashboard"
+              onClick={() => setHeader("Статистика")}
+            >
               <AlignVerticalBottomIcon color="primary" />
             </ToggleButton>
           </Link>

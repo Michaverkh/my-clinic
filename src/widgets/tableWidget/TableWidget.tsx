@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { ReceptionFiltersForm } from "widgets/receptionFiltersForm";
 
 export const TableWidget: FC = () => {
@@ -11,7 +11,12 @@ export const TableWidget: FC = () => {
         columnGap: "48px",
       }}
     >
-      <ReceptionFiltersForm />
+      <Box>
+        <Typography variant="h3" mb="16px">
+          Фильтры
+        </Typography>
+        <ReceptionFiltersForm />
+      </Box>
       <Box
         sx={{
           display: "flex",

@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { DashbordFiltersForm } from "widgets/dashbordFiltersForm";
+import { DashBoard } from "widgets/dashboard/Dashboard";
 
 export const DashboardWidget: FC = () => {
   return (
@@ -10,7 +12,22 @@ export const DashboardWidget: FC = () => {
         columnGap: "48px",
       }}
     >
-      <span>Фильтры для дашборда</span>
+      <Box>
+        <Typography variant="h3" mb="16px">
+          Фильтры
+        </Typography>
+        <DashbordFiltersForm />
+      </Box>
+      <Box
+        sx={{
+          height: "500px",
+        }}
+      >
+        <DashBoard
+          axisBottomText="Специализация"
+          axisLeftText="Колличество назначений"
+        />
+      </Box>
     </Box>
   );
 };
