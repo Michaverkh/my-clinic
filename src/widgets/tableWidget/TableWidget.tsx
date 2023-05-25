@@ -1,6 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Box } from "@mui/material";
 import { ReceptionFiltersForm } from "widgets/receptionFiltersForm";
+import { headCells, rows } from "./data";
+import { EnhancedTable } from "features";
 
 export const TableWidget: FC = () => {
   return (
@@ -12,19 +14,7 @@ export const TableWidget: FC = () => {
       }}
     >
       <ReceptionFiltersForm />
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "300px",
-          height: "100%",
-          borderRadius: "20px",
-          backgroundColor: "#82B1FF",
-        }}
-      >
-        <span>Место для вашей таблицы</span>
-      </Box>
+      <EnhancedTable rows={rows} headCells={headCells} />
     </Box>
   );
 };
