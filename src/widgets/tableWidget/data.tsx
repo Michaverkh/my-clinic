@@ -1,19 +1,6 @@
 import { Status } from "features";
 import { Data, HeadCell } from "features/Table/interfaces";
 
-export enum EReceptions {
-  Standart = "standard",
-  PoorQuality = "poorQuality",
-  SubOptimal = "suboptimal",
-  Unverifiable = "unverifiable",
-}
-export enum EAppointment {
-  Standard = "standard",
-  Missing = "missing",
-  Possible = "possible",
-  Excess = "excess",
-}
-
 export const createData = (
   date: string,
   spec: string,
@@ -29,25 +16,6 @@ export const createData = (
   nazn,
   type: <Status status={type} />,
 });
-
-// export const rows = [
-//   createData("2023.02.17", "Кардиология", "Иванов И.И.", 67, 4, [
-//     EReceptions.Standart,
-//     EReceptions.PoorQuality,
-//     EReceptions.SubOptimal,
-//     EReceptions.Unverifiable,
-//   ]),
-//   createData("2023.02.18", "ЛОР", "Петров И.И.", 67, 4, [
-//     EReceptions.Unverifiable,
-//   ]),
-//   createData("2023.02.15", "Кардиология", "Иванов И.И.", 67, 4, [
-//     EReceptions.Standart,
-//     EReceptions.PoorQuality,
-//   ]),
-//   createData("2023.02.20", "Кардиология", "Иванов И.И.", 67, 4, [
-//     EReceptions.SubOptimal,
-//   ]),
-// ];
 
 export const headCells: readonly HeadCell[] = [
   {

@@ -10,3 +10,10 @@ export enum EReception {
   SUBOPTIMAL = "suboptimal",
   UNVERIFIABLE = "unverifiable",
 }
+
+export enum EAppointment {
+  Standard = "standard",
+  Missing = "missing",
+  Possible = "possible",
+  Excess = "excess",
+}

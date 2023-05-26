@@ -8,7 +8,11 @@ const RootStore = types.model("RootStore", {
   user: types.optional(UserStore, {
     loading: false,
   }),
-  receptions: types.optional(ReceptionsStore, { loading: false }),
+  receptions: types.optional(ReceptionsStore, {
+    loading: false,
+    sortDirection: "ask",
+    page: 0,
+  }),
 });
 
 export default RootStore;

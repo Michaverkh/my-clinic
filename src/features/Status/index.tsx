@@ -4,8 +4,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { FC } from "react";
-import { EAppointment, EReceptions } from "widgets/tableWidget/data";
 import { Box, Tooltip, styled } from "@mui/material";
+import { EAppointment } from "shared/enums/enums";
 
 const RedBox = styled(Box)({
   display: "flex",
