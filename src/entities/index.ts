@@ -11,7 +11,6 @@ const RootStore = types.model("RootStore", {
   receptions: types.optional(ReceptionsStore, {
     loading: false,
     sortDirection: "ask",
-    page: 0,
   }),
 });
 

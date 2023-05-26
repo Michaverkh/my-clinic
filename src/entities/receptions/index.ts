@@ -44,16 +44,20 @@ const ReceptionsStore = types
   .model("Receptions", {
     loading: types.boolean,
     sortDirection: types.string,
-    page: types.number,
     items: types.array(ReceptionItem),
     pagination: types.optional(Pagination, {}),
   })
+  .views((self) => ({
+    get page() {
+      return self.pagination.offset / self.pagination.limit;
+    },
+  }))
   .actions((self) => ({
     setOrder: (order: string) => {
       self.sortDirection = order;
     },
     setPage: (page: number) => {
-      self.page = page;
+      self.pagination.offset = self.pagination.limit * page;
     },
     setLimit: (limit: number) => {
       self.pagination.limit = limit;
@@ -68,7 +72,7 @@ const ReceptionsStore = types
           `${EEndpoints.GET_RECEPTIONS_LIST}`,
           {
             limit: self.pagination.limit,
-            offset: self.pagination.limit * self.page,
+            offset: self.pagination.offset,
             sortDirection: self.sortDirection,
           },
           {
@@ -78,7 +82,6 @@ const ReceptionsStore = types
         );
         self.items = yield receptionsItemsMapper(res);
         self.pagination = yield paginationMapper(res);
-        self.page = self.pagination.offset / self.pagination.limit;
       } finally {
         self.loading = false;
       }

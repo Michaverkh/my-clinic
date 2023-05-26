@@ -30,13 +30,13 @@ const receptionsList = array()
   .default([]);
 
 export const receptionsRequestSchema = object({
-  limit: number().notRequired().default(10),
-  offset: number().notRequired().default(0),
-  sortDirection: string().notRequired().default("ask"),
-  // dateFrom: string().notRequired(),
-  // dateTo: string().notRequired(),
-  // specialization: string().notRequired(),
-  // client: string().notRequired(),
+  limit: number().optional(),
+  offset: number().optional(),
+  sortDirection: string().optional().default("ask"),
+  dateFrom: string().optional(),
+  dateTo: string().optional(),
+  specialization: string().optional(),
+  client: string().optional(),
 });
 
 export const receptionsResponseSchema = object({
