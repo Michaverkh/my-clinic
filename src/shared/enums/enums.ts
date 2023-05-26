@@ -4,6 +4,12 @@ export enum ESpecialization {
   NEUROLOGY = "neurology",
 }
 
+export enum ESpecializationRu {
+  otolaringology = "отоларингология",
+  cardiology = "кардиология",
+  neurology = "неврология",
+}
+
 export enum EReception {
   STANDART = "standart",
   POOR_QUALITY = "poorQuality",
@@ -16,4 +22,11 @@ export enum EAppointment {
   Missing = "missing",
   Possible = "possible",
   Excess = "excess",
+}
+
+export enum EReceptionRu {
+  standart = "соответствует стандарту",
+  poorQuality = "не соответствует качество",
+  suboptimal = "не оптимальное",
+  unverifiable = "диагноза нет в базе",
 }

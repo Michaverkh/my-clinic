@@ -1,19 +1,25 @@
 import React, { FC } from "react";
 import { ResponsiveBar } from "@nivo/bar";
-import { dashboardMockData, dashbordKeys } from "./constants";
+import { dashbordKeys } from "./constants";
+import { IDashBoardRenderData } from "entities/dashboard/interafces";
 
 export interface IDashBoard {
+  dashBoardRenderData: IDashBoardRenderData[];
   axisBottomText?: string;
   axisLeftText?: string;
 }
 
 export const DashBoard: FC<IDashBoard> = ({
+  dashBoardRenderData,
   axisBottomText = "X",
   axisLeftText = "Y",
 }) => {
+  const tickRotation: number = dashBoardRenderData.length > 3 ? 30 : 0;
+
   return (
     <ResponsiveBar
-      data={dashboardMockData}
+      //@ts-ignore
+      data={dashBoardRenderData}
       keys={dashbordKeys}
       indexBy="name"
       theme={{
@@ -28,36 +34,36 @@ export const DashBoard: FC<IDashBoard> = ({
           ticks: {
             text: {
               fontFamily: "Roboto",
-              fontSize: "16px",
+              fontSize: "14px",
             },
           },
         },
         legends: {
           text: {
             fontFamily: "Roboto",
-            fontSize: "16px",
+            fontSize: "14px",
           },
           title: {
             text: {
               fontFamily: "Roboto",
-              fontSize: "16px",
+              fontSize: "14px",
             },
           },
           ticks: {
             text: {
               fontFamily: "Roboto",
-              fontSize: "16px",
+              fontSize: "14px",
             },
           },
         },
         annotations: {
           text: {
             fontFamily: "Roboto",
-            fontSize: "16px",
+            fontSize: "14px",
           },
         },
       }}
-      margin={{ top: 0, right: 140, bottom: 60, left: 75 }}
+      margin={{ top: 60, right: 240, bottom: 150, left: 70 }}
       padding={0.1}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
@@ -71,10 +77,10 @@ export const DashBoard: FC<IDashBoard> = ({
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: tickRotation,
         legend: `${axisBottomText}`,
         legendPosition: "middle",
-        legendOffset: 50,
+        legendOffset: 100,
       }}
       axisLeft={{
         tickSize: 5,
@@ -115,11 +121,6 @@ export const DashBoard: FC<IDashBoard> = ({
           ],
         },
       ]}
-      // tooltip={() => {
-      //   <div>
-      //     <p>Я тултип</p>
-      //   </div>;
-      // }}
       role="application"
       ariaLabel="Nivo bar chart demo"
       barAriaLabel={(e) => {

@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "name": "отоларингология",
+      "standart": 28,
+      "poorQuality": 5,
+      "suboptimal": 10,
+      "unverifiable": 2,
+      "date": "2023-08-01T07:10:38+00:00"
+    },
+    {
+      "id": "2",
+      "name": "кардиология",
+      "standart": 13,
+      "poorQuality": 8,
+      "suboptimal": 6,
+      "unverifiable": 2
+    },
+    {
+      "id": "3",
+      "name": "неврология",
+      "standart": 44,
+      "poorQuality": 22,
+      "suboptimal": 0,
+      "unverifiable": 10,
+      "date": "2023-08-03T07:10:38+00:00"
+    },
+    {
+      "id": "3",
+      "name": "неврологsия",
+      "standart": 44,
+      "poorQuality": 22,
+      "suboptimal": 0,
+      "unverifiable": 10,
+      "date": "2023-08-03T07:10:38+00:00"
+    }
+  ]
+}
