@@ -9,9 +9,10 @@ import Paper from "@mui/material/Paper";
 import { ExportBtn, ImportBtn } from "features";
 import { Data, HeadCell, Order } from "./interfaces";
 import { TableHeader } from "./Header";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { TablePaginationActions } from "./Pagination";
 import { observer } from "mobx-react-lite";
+import useStore from "app/hooks/useStore";
 
 interface IProps {
   headCells: readonly HeadCell[];
@@ -19,38 +20,58 @@ interface IProps {
 }
 
 export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
-  const [order, setOrder] = useState<Order>("asc");
-  const [orderBy, setOrderBy] = useState<keyof Data>("date");
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const { receptions } = useStore();
 
+  /**
+   * Нажали на сортировку
+   * @param event
+   * @param property
+   * @returns
+   */
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data
   ) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
+    if (property !== "date") {
+      return;
+    }
+
+    const isAsc = receptions.sortDirection === "asc";
+
+    receptions.setOrder(isAsc ? "desc" : "asc");
+    receptions.getList();
   };
 
+  /**
+   * нажали на строку
+   * @param event
+   * @param name
+   */
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     console.log(name);
   };
 
+  /**
+   * Смена страницы
+   * @param event
+   * @param newPage
+   */
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+    receptions.setPage(newPage);
+    receptions.getList();
   };
 
+  /**
+   * Смена кол-ва строк на странице
+   * @param event
+   */
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    receptions.setLimit(parseInt(event.target.value, 10));
+    receptions.setPage(0);
+    receptions.getList();
   };
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -63,8 +84,7 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
           >
             <TableHeader
               headCells={headCells}
-              order={order}
-              orderBy={orderBy}
+              order={receptions.sortDirection as Order}
               onRequestSort={handleRequestSort}
             />
             <TableBody>
@@ -78,20 +98,11 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
                     sx={{ cursor: "pointer" }}
                   >
                     {Object.values(row).map((val) => (
-                      <TableCell key={val}>{val}</TableCell>
+                      <TableCell>{val}</TableCell>
                     ))}
                   </TableRow>
                 );
               })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 33 * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -104,9 +115,9 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
             ActionsComponent={TablePaginationActions}
             rowsPerPageOptions={[2, 5, 10, 25]}
             component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
+            count={receptions.pagination.totalSize}
+            rowsPerPage={receptions.pagination.limit}
+            page={receptions.page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />

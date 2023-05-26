@@ -43,10 +43,25 @@ const ReceptionItem = types.model("ReceptionItem", {
 const ReceptionsStore = types
   .model("Receptions", {
     loading: types.boolean,
+    sortDirection: types.string,
     items: types.array(ReceptionItem),
     pagination: types.optional(Pagination, {}),
   })
+  .views((self) => ({
+    get page() {
+      return self.pagination.offset / self.pagination.limit;
+    },
+  }))
   .actions((self) => ({
+    setOrder: (order: string) => {
+      self.sortDirection = order;
+    },
+    setPage: (page: number) => {
+      self.pagination.offset = self.pagination.limit * page;
+    },
+    setLimit: (limit: number) => {
+      self.pagination.limit = limit;
+    },
     getList: flow(function* () {
       self.loading = true;
       try {
@@ -55,7 +70,11 @@ const ReceptionsStore = types
           IReceptionsResponseDto
         >(
           `${EEndpoints.GET_RECEPTIONS_LIST}`,
-          {},
+          {
+            limit: self.pagination.limit,
+            offset: self.pagination.offset,
+            sortDirection: self.sortDirection,
+          },
           {
             requestValidationSchema: receptionsRequestSchema,
             responseValidationSchema: receptionsResponseSchema,

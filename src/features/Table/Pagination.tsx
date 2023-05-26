@@ -18,9 +18,10 @@ export function TablePaginationActions(props: TablePaginationActionsProps) {
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <Pagination
+        page={page + 1}
         variant="outlined"
         shape="rounded"
-        count={Math.round(count / rowsPerPage)}
+        count={Math.round(count / rowsPerPage) + 1}
         showFirstButton
         showLastButton
         onChange={(event: any, page) => onPageChange(event, page - 1)}

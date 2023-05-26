@@ -9,7 +9,12 @@ const RootStore = types.model("RootStore", {
   user: types.optional(UserStore, {
     loading: false,
   }),
-  receptions: types.optional(ReceptionsStore, { loading: false }),
+
+  receptions: types.optional(ReceptionsStore, {
+    loading: false,
+    sortDirection: "ask",
+  }),
+
   dashboardItems: types.optional(DashboardItemsStore, { loading: false }),
 });
 

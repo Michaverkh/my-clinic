@@ -17,6 +17,13 @@ export enum EReception {
   UNVERIFIABLE = "unverifiable",
 }
 
+export enum EAppointment {
+  Standard = "standard",
+  Missing = "missing",
+  Possible = "possible",
+  Excess = "excess",
+}
+
 export enum EReceptionRu {
   standart = "соответствует стандарту",
   poorQuality = "не соответствует качество",

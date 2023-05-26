@@ -16,13 +16,13 @@ interface IProps {
     property: keyof Data
   ) => void;
   order: Order;
-  orderBy: string;
+  orderBy?: string;
 }
 
 export const TableHeader: FC<IProps> = ({
   headCells,
   order,
-  orderBy,
+  orderBy = "date",
   onRequestSort,
 }) => {
   const createSortHandler =

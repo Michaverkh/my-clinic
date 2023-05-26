@@ -29,7 +29,15 @@ const receptionsList = array()
   .notRequired()
   .default([]);
 
-export const receptionsRequestSchema = object({});
+export const receptionsRequestSchema = object({
+  limit: number().optional(),
+  offset: number().optional(),
+  sortDirection: string().optional().default("ask"),
+  dateFrom: string().optional(),
+  dateTo: string().optional(),
+  specialization: string().optional(),
+  client: string().optional(),
+});
 
 export const receptionsResponseSchema = object({
   items: receptionsList,
