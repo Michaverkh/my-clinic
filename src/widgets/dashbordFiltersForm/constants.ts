@@ -1,7 +1,7 @@
 import { IOption } from "shared/interfaces";
-import { IReceptionFiltersValues } from "./interfaces";
-import * as yup from "yup";
+import { IDashboardFiltersValues } from "./interfaces";
 import { ESpecialization } from "shared/enums/enums";
+import * as yup from "yup";
 
 export const specializationOptions: IOption[] = [
   {
@@ -18,15 +18,25 @@ export const specializationOptions: IOption[] = [
   },
 ];
 
-export const receptionInitialValues: IReceptionFiltersValues = {
-  clientId: 0,
+export const sectionOptions: IOption[] = [
+  {
+    label: "специализация",
+    value: "specialization",
+  },
+  {
+    label: "временной интервал",
+    value: "date",
+  },
+];
+
+export const dashboardInitialValues: IDashboardFiltersValues = {
+  section: sectionOptions[0].value,
   specialization: [],
   dateFrom: null,
   dateTo: null,
 };
 
-export const receptionFiltersSchema = yup.object().shape({
-  clientId: yup.number().typeError("Неверный формат"),
+export const dashboardFiltersSchema = yup.object().shape({
   dateFrom: yup.date().typeError("Ведите диапазон").required("Ведите диапазон"),
   dateTo: yup
     .date()

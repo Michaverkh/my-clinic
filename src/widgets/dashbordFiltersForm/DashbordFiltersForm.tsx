@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
 import { FC } from "react";
 import { Formik } from "formik";
-import { InputBase } from "shared/components/inputBase";
 import {
   Button,
   Select,
@@ -12,19 +11,20 @@ import {
 } from "@mui/material";
 import { FormikDatePicker } from "shared/components/datePicker";
 import {
-  receptionFiltersSchema,
-  receptionInitialValues,
+  dashboardFiltersSchema,
+  dashboardInitialValues,
+  sectionOptions,
   specializationOptions,
 } from "./constants";
 import { handleSubmit } from "./handlers";
 
-export const ReceptionFiltersForm: FC = () => {
+export const DashbordFiltersForm: FC = () => {
   return (
     <Box>
       <Formik
         onSubmit={handleSubmit}
-        initialValues={receptionInitialValues}
-        validationSchema={receptionFiltersSchema}
+        initialValues={dashboardInitialValues}
+        validationSchema={dashboardFiltersSchema}
       >
         {({
           values,
@@ -36,14 +36,22 @@ export const ReceptionFiltersForm: FC = () => {
         }) => (
           <form onSubmit={handleSubmit}>
             <Box display="grid" gap="16px" gridAutoColumns="1fr">
-              <InputBase
-                label="id клиента"
-                onChange={handleChange}
-                value={values.clientId}
-                name="clientId"
-                error={!!touched.clientId && !!errors.clientId}
-                helperText={touched.clientId && errors.clientId}
-              />
+              <FormControl>
+                <InputLabel id="section-id">Параметр отсчета</InputLabel>
+                <Select
+                  id="section-id"
+                  onChange={handleChange}
+                  value={values.section}
+                  label="Параметр отсчета"
+                  name="section"
+                >
+                  {sectionOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               <FormControl>
                 <InputLabel id="specialization-id">Специализация</InputLabel>
                 <Select

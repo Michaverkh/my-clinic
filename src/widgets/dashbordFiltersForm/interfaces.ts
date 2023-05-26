@@ -1,5 +1,5 @@
-export interface IReceptionFiltersValues {
-  clientId?: number;
+export interface IDashboardFiltersValues {
+  section: string;
   specialization?: string[];
   dateFrom: Date | null;
   dateTo: Date | null;

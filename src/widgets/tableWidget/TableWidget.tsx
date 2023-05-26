@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { ReceptionFiltersForm } from "widgets/receptionFiltersForm";
 import { createData, headCells } from "./data";
 import { EnhancedTable } from "features";
@@ -35,7 +35,12 @@ export const TableWidget: FC = observer(() => {
         columnGap: "48px",
       }}
     >
-      <ReceptionFiltersForm />
+      <Box>
+        <Typography variant="h3" mb="16px">
+          Фильтры
+        </Typography>
+        <ReceptionFiltersForm />
+      </Box>
       {receptions.loading ? (
         <CircularProgress />
       ) : (
