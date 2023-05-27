@@ -17,7 +17,7 @@ window.addEventListener("error", (event): void => {
   console.log("error: ", event);
   event.preventDefault();
 });
-export const apiModule = new ApiService("http://localhost:8080/");
+export const apiModule = new ApiService("http://localhost:3000/");
 
 const store = RootStore.create({});
 export const StoreContext = createContext(store);
