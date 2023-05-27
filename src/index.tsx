@@ -6,10 +6,10 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "app/themes/theme";
 import ApiService from "shared/api/apiService";
 
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
-  worker.start();
-}
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mocks/browser");
+//   worker.start();
+// }
 
 window.addEventListener("error", (event): void => {
   // errorCollector.setError(event);
@@ -17,7 +17,7 @@ window.addEventListener("error", (event): void => {
   console.log("error: ", event);
   event.preventDefault();
 });
-export const apiModule = new ApiService("http://localhost:3000/");
+export const apiModule = new ApiService("http://localhost:8080/");
 
 const store = RootStore.create({});
 export const StoreContext = createContext(store);
