@@ -8,13 +8,14 @@ const DataSetStore = types
     isSuccess: types.boolean,
   })
   .actions((self) => ({
-    sendFile: flow(function* (formData: FormData) {
+    sendFile: flow(function* (uploadedFile: File) {
       self.loading = true;
       self.isSuccess = false;
+
       try {
         const res = yield apiModule.postData(
           `${EEndpoints.POST_UPLOAD_DATASET}`,
-          { formData },
+          { file: uploadedFile },
           {}
         );
         self.isSuccess = res.status ? !!res.status : false;

@@ -10,8 +10,6 @@ export const TableWidget: FC = observer(() => {
   const { receptions } = useStore();
   const { dataSet } = useStore();
 
-  console.log("isSuccess", dataSet.isSuccess);
-
   useEffect(() => {
     receptions.getList();
   }, [dataSet.isSuccess]);

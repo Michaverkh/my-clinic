@@ -10,11 +10,8 @@ export const ImportBtn: FC = observer(() => {
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as FileList;
-
-    const formData = new FormData();
-    formData.append("file", files[0]);
-
-    dataSet.sendFile(formData);
+    const file = files[0];
+    dataSet.sendFile(file);
   };
 
   return (
