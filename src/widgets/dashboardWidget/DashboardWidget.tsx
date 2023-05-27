@@ -42,7 +42,7 @@ export const DashboardWidget: FC = observer(() => {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "320px auto",
+        gridTemplateColumns: "320px 900px",
         columnGap: "48px",
       }}
     >
@@ -58,17 +58,15 @@ export const DashboardWidget: FC = observer(() => {
           justifyContent: "center",
           alignItems: "center",
           height: "520px",
-          overflowX: "scroll",
-          overflowY: "hidden",
         }}
       >
         {dashboardItems.loading ? (
           <CircularProgress />
-        ) : (
+        ) : dashboardData.values.length !== 0 ? (
           <Box
             sx={{
-              height: "500px",
-              width: "800px",
+              height: "100%",
+              width: "100%",
             }}
           >
             <DashBoard
@@ -77,6 +75,10 @@ export const DashboardWidget: FC = observer(() => {
               axisLeftText="Колличество назначений"
             />
           </Box>
+        ) : (
+          <Typography variant="h6">
+            При загрузке данных произошла ошибка. Попробуйте позднее
+          </Typography>
         )}
       </Box>
     </Box>

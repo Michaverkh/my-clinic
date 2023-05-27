@@ -17,12 +17,15 @@ import {
   specializationOptions,
 } from "./constants";
 import { handleSubmit } from "./handlers";
+import useStore from "app/hooks/useStore";
 
 export const ReceptionFiltersForm: FC = () => {
+  const { receptions } = useStore();
+
   return (
     <Box>
       <Formik
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(receptions.setFilterValues, receptions.getList)}
         initialValues={receptionInitialValues}
         validationSchema={receptionFiltersSchema}
       >
@@ -39,10 +42,10 @@ export const ReceptionFiltersForm: FC = () => {
               <InputBase
                 label="id клиента"
                 onChange={handleChange}
-                value={values.clientId}
-                name="clientId"
-                error={!!touched.clientId && !!errors.clientId}
-                helperText={touched.clientId && errors.clientId}
+                value={values.client}
+                name="client"
+                error={!!touched.client && !!errors.client}
+                helperText={touched.client && errors.client}
               />
               <FormControl>
                 <InputLabel id="specialization-id">Специализация</InputLabel>
@@ -62,19 +65,23 @@ export const ReceptionFiltersForm: FC = () => {
                 </Select>
               </FormControl>
               <FormikDatePicker label="Дата от" name="dateFrom" />
+              {!!touched.dateFrom && !!errors.dateFrom && (
+                <Typography variant="h6">{errors.dateFrom}</Typography>
+              )}
               <FormikDatePicker label="Дата до" name="dateTo" />
               {!!touched.dateTo && !!errors.dateTo && (
                 <Typography variant="h6">{errors.dateTo}</Typography>
-              )}
-              {!!touched.dateFrom && !!errors.dateFrom && (
-                <Typography variant="h6">{errors.dateFrom}</Typography>
               )}
             </Box>
             <Box display="flex" justifyContent="flex-end" mt="20px">
               <Button
                 color="info"
                 variant="contained"
-                onClick={handleReset}
+                onClick={() => {
+                  receptions.disposeFilterValues();
+                  receptions.getList();
+                  handleReset();
+                }}
                 sx={{ marginRight: "16px" }}
               >
                 Сбросить

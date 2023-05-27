@@ -24,7 +24,7 @@ const DashboardItemsStore = types
     items: types.array(DashboardItem),
   })
   .actions((self) => ({
-    getList: flow(function* () {
+    getList: flow(function* (params?: Record<string, any>) {
       self.loading = true;
       try {
         const res = yield apiModule.getData<
@@ -32,7 +32,7 @@ const DashboardItemsStore = types
           IDashboardResponseItemsDto
         >(
           `${EEndpoints.GET_DASHBOARD_LIST}`,
-          {},
+          { ...params },
           {
             requestValidationSchema: dashboardRequestSchema,
             responseValidationSchema: dashboardResponseItemsSchema,

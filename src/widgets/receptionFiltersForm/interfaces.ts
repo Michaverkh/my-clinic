@@ -1,5 +1,5 @@
 export interface IReceptionFiltersValues {
-  clientId?: number;
+  client?: number;
   specialization?: string[];
   dateFrom: Date | null;
   dateTo: Date | null;
