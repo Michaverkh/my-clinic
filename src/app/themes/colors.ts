@@ -6,6 +6,7 @@ export const LIGHT1 = "#FFFFFF";
 export const MOUNTAIN1 = "#757575";
 export const MOUNTAIN2 = "#D5D5D5";
 export const MOUNTAIN3 = "#EEEEEE";
+export const MOUNTAIN4 = "#0000000D";
 
 //зеленый цвет и оттенки
 export const FOREST1 = "#388E3C";

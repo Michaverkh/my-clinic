@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import receptions from "./data/receptions.json";
 import dashboardItems from "./data/dashboardItems.json";
+import importDataSetResponse from "./data/importDataSetResponse.json";
 import { EEndpoints } from "shared/api/enums";
 
 export const handlers = [
@@ -27,10 +28,17 @@ export const handlers = [
     //       return arr?.includes(item.status);
     //     })
     //   : response.body.tasks;
-    return res(ctx.status(200), ctx.json(response), ctx.delay(0));
+    return res(ctx.status(200), ctx.json(response), ctx.delay(1000));
   }),
   rest.get(EEndpoints.GET_DASHBOARD_LIST, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(dashboardItems), ctx.delay(1000));
+    return res(ctx.status(200), ctx.json(dashboardItems), ctx.delay(2000));
+  }),
+  rest.post(EEndpoints.POST_UPLOAD_DATASET, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(importDataSetResponse),
+      ctx.delay(1000)
+    );
   }),
   // rest.get(EEndpoints.GET_POSTS, (req, res, ctx) => {
   //   return res(ctx.status(200), ctx.json(posts), ctx.delay(1000));

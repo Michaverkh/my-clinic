@@ -1,5 +1,5 @@
 import { createTheme, experimental_sx as sx } from "@mui/material";
-import { DARK1, FLAME1, LIGHT1, SKY1 } from "./colors";
+import { DARK1, FLAME1, LIGHT1, SKY1, MOUNTAIN4 } from "./colors";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -11,6 +11,7 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: DARK1,
+      light: MOUNTAIN4,
     },
     secondary: {
       main: SKY1,

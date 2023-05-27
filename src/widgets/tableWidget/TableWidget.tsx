@@ -2,15 +2,17 @@ import { FC, useEffect, useMemo } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { ReceptionFiltersForm } from "widgets/receptionFiltersForm";
 import { createData, headCells } from "./data";
-import { EnhancedTable } from "features";
+import { EnhancedTable, ImportBtn } from "features";
 import useStore from "app/hooks/useStore";
-import { Observer, observer } from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 
 export const TableWidget: FC = observer(() => {
   const { receptions } = useStore();
+  const { dataSet } = useStore();
+
   useEffect(() => {
     receptions.getList();
-  }, []);
+  }, [dataSet.isSuccess]);
 
   const rows = useMemo(
     () =>
@@ -27,6 +29,31 @@ export const TableWidget: FC = observer(() => {
     [receptions.loading]
   );
 
+  const renderContent = () => {
+    if (receptions.loading) {
+      return <CircularProgress />;
+    }
+
+    if (!rows || rows.length === 0) {
+      return (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            backgroundColor: (theme) => theme.palette.primary.light,
+          }}
+        >
+          <ImportBtn />
+        </Box>
+      );
+    }
+
+    return <EnhancedTable rows={rows} headCells={headCells} />;
+  };
+
   return (
     <Box
       sx={{
@@ -41,11 +68,15 @@ export const TableWidget: FC = observer(() => {
         </Typography>
         <ReceptionFiltersForm />
       </Box>
-      {receptions.loading ? (
-        <CircularProgress />
-      ) : (
-        <EnhancedTable rows={rows} headCells={headCells} />
-      )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {renderContent()}
+      </Box>
     </Box>
   );
 });
