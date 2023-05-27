@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FC, useRef } from "react";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import useStore from "app/hooks/useStore";
@@ -20,11 +20,6 @@ export const ImportBtn: FC = observer(() => {
     <>
       {dataSet.loading ? (
         <Button color="secondary" startIcon={<UploadFileIcon />}>
-          <CircularProgress
-            sx={{
-              marginRight: "16px",
-            }}
-          />
           <Typography>Загрузка...</Typography>
         </Button>
       ) : dataSet.isSuccess ? (
