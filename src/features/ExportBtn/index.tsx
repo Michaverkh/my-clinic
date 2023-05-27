@@ -11,7 +11,7 @@ export const ExportBtn: FC = () => {
       target="_blank"
       rel="noreferrer"
       underline="none"
-      download={`${timeStamp}.csv`}
+      download={`${timeStamp}.xlsx`}
     >
       <Button color="secondary" startIcon={<SaveAltIcon />}>
         Экспортировать
