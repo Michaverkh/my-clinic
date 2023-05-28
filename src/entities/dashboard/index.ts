@@ -11,7 +11,7 @@ import {
 const DashboardItem = types.model("DashboardItem", {
   id: types.optional(types.string, ""),
   name: types.optional(types.string, ""),
-  standart: types.optional(types.number, 0),
+  standard: types.optional(types.number, 0),
   poorQuality: types.optional(types.number, 0),
   suboptimal: types.optional(types.number, 0),
   unverifiable: types.optional(types.number, 0),

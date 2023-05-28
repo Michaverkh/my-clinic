@@ -11,7 +11,7 @@ export enum ESpecializationRu {
 }
 
 export enum EReception {
-  STANDART = "standart",
+  STANDART = "standard",
   POOR_QUALITY = "poorQuality",
   SUBOPTIMAL = "suboptimal",
   UNVERIFIABLE = "unverifiable",
@@ -25,7 +25,7 @@ export enum EAppointment {
 }
 
 export enum EReceptionRu {
-  standart = "соответствует стандарту",
+  standard = "соответствует стандарту",
   poorQuality = "не соответствует качество",
   suboptimal = "не оптимальное",
   unverifiable = "диагноза нет в базе",

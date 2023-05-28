@@ -60,7 +60,12 @@ const ReceptionsStore = types
     sortDirection: types.string,
     items: types.array(ReceptionItem),
     pagination: types.optional(Pagination, {}),
-    filterValues: types.optional(FormFilterValues, {}),
+    filterValues: types.optional(FormFilterValues, {
+      client: "",
+      specialization: ["cardiology", "otolaringology", "neurology"],
+      dateFrom: "01.01.2000",
+      dateTo: "01.01.2050",
+    }),
   })
   .views((self) => ({
     get page() {
@@ -80,18 +85,23 @@ const ReceptionsStore = types
     setFilterValues: (filters: IReceptionFiltersValuesDTO) => {
       self.filterValues.client = filters.client ?? "";
       //@ts-ignore
-      self.filterValues.specialization = filters.specialization
-        ? filters.specialization
-        : [];
-      self.filterValues.dateFrom = filters.dateFrom ?? "";
-      self.filterValues.dateTo = filters.dateTo ?? "";
+      self.filterValues.specialization =
+        filters.specialization && filters.specialization.length > 0
+          ? filters.specialization
+          : ["cardiology", "otolaringology", "neurology"];
+      self.filterValues.dateFrom = filters.dateFrom ?? "01.01.2000";
+      self.filterValues.dateTo = filters.dateTo ?? "01.01.2050";
     },
     disposeFilterValues: () => {
       self.filterValues.client = "";
       //@ts-ignore
-      self.filterValues.specialization = [];
-      self.filterValues.dateFrom = "";
-      self.filterValues.dateTo = "";
+      self.filterValues.specialization = [
+        "cardiology",
+        "otolaringology",
+        "neurology",
+      ];
+      self.filterValues.dateFrom = "01.01.2000";
+      self.filterValues.dateTo = "01.01.2050";
     },
     getList: flow(function* () {
       self.loading = true;
