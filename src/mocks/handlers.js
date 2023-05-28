@@ -11,7 +11,7 @@ export const handlers = [
     const totalSize = req.url.searchParams.get("totalSize") || "12";
     const offset = req.url.searchParams.get("offset") || "0";
     const limit = req.url.searchParams.get("limit") || "10";
-    const sort = req.url.searchParams.get("sortDirection") || "ask";
+    const sort = req.url.searchParams.get("sortDirection") || "asc";
 
     response.offset = parseInt(offset, 10);
     response.totalSize = parseInt(totalSize, 10);

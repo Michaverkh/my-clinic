@@ -16,7 +16,7 @@ const RootStore = types.model("RootStore", {
 
   receptions: types.optional(ReceptionsStore, {
     loading: false,
-    sortDirection: "ask",
+    sortDirection: "asc",
   }),
 
   dashboardItems: types.optional(DashboardItemsStore, { loading: false }),
