@@ -7,7 +7,7 @@ import { detailedRequestSchema, detailedResponseSchema } from "./validators";
 
 const Reception = types.model("Reception", {
   date: types.optional(types.string, ""),
-  id: types.optional(types.number, 0),
+  id: types.optional(types.string, ""),
   diagnosis: types.optional(types.string, ""),
   //Статус приема – возможные значения см таблицу 1
   status: types.optional(types.string, ""),
@@ -16,7 +16,7 @@ const Reception = types.model("Reception", {
 const Doctor = types.model("Doctor", {
   specialization: types.optional(types.string, ""),
   name: types.optional(types.string, ""),
-  id: types.optional(types.number, 0),
+  id: types.optional(types.string, ""),
 });
 
 const Research = types.model("Appointment", {

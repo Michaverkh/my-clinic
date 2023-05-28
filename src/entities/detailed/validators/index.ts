@@ -1,7 +1,7 @@
 import { array, boolean, number, object, string } from "yup";
 
 const reception = object({
-  id: number().required(),
+  id: string().required(),
   date: string().notRequired().default(""),
   diagnosis: string().notRequired().default(""),
   status: string().notRequired().default(""),
@@ -10,7 +10,7 @@ const reception = object({
 const doctor = object({
   specialization: string().notRequired().default(""),
   name: string().notRequired().default(""),
-  id: number().required(),
+  id: string().required(),
 });
 
 const research = object({
@@ -21,7 +21,7 @@ const research = object({
 });
 
 export const detailedRequestSchema = object({
-  id: number().optional(),
+  id: string().optional(),
 });
 
 export const detailedResponseSchema = object({
