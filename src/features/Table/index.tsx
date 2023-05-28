@@ -13,6 +13,8 @@ import { FC } from "react";
 import { TablePaginationActions } from "./Pagination";
 import { observer } from "mobx-react-lite";
 import useStore from "app/hooks/useStore";
+import { useNavigate } from "react-router-dom";
+import { RoterPath } from "shared/router/enums";
 import uuid from "react-uuid";
 
 interface IProps {
@@ -22,6 +24,7 @@ interface IProps {
 
 export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
   const { receptions } = useStore();
+  const navigate = useNavigate();
 
   /**
    * Нажали на сортировку
@@ -48,8 +51,8 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
    * @param event
    * @param name
    */
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    console.log(name);
+  const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
+    navigate(RoterPath.DETAILED_INFO, { state: { id } });
   };
 
   /**
@@ -93,14 +96,16 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.date)}
+                    onClick={(event) => handleClick(event, row.id)}
                     tabIndex={-1}
                     key={uuid()}
                     sx={{ cursor: "pointer" }}
                   >
-                    {Object.values(row).map((val) => (
-                      <TableCell>{val}</TableCell>
-                    ))}
+                    {Object.values(row).map((val, index) => {
+                      if (index !== 0) {
+                        return <TableCell>{val}</TableCell>;
+                      }
+                    })}
                   </TableRow>
                 );
               })}

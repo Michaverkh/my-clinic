@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export type Order = "asc" | "desc";
 
 export interface Data {
+  id: string;
   date: string;
   spec: string;
   doctor: string;

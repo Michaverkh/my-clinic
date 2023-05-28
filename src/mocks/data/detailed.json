@@ -1,0 +1,27 @@
+{
+  "reception": {
+    "date": "2023-04-24",
+    "id": 1,
+    "diagnosis": "J32.9 Хронический синусит неуточненный",
+    "status": "standard"
+  },
+  "doctor": {
+    "specialization": "врач-оториноларинголог",
+    "name": "Тараканчиков Димасик Бобинчиков",
+    "id": 123
+  },
+  "research": [
+    {
+      "id": 12,
+      "name": "B05.069.002",
+      "isNecessary": true,
+      "status": "missing"
+    },
+    {
+      "id": 13,
+      "name": "B05.069.001",
+      "isNecessary": true,
+      "status": "standard"
+    }
+  ]
+}

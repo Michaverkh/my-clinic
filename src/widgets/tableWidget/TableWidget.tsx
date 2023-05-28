@@ -18,6 +18,7 @@ export const TableWidget: FC = observer(() => {
     () =>
       receptions.items.map((item) =>
         createData(
+          item.reception.id,
           item.reception.date,
           item.doctor.specialization,
           item.doctor.name,

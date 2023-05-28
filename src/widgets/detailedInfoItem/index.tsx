@@ -1,0 +1,1 @@
+export { DetailedInfoItem } from "./DetailedInfoItem";
