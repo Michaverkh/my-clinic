@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "отоларингология",
-      "standart": 28,
+      "standard": 28,
       "poorQuality": 5,
       "suboptimal": 10,
       "unverifiable": 2,
@@ -12,7 +12,7 @@
     {
       "id": "2",
       "name": "кардиология",
-      "standart": 13,
+      "standard": 13,
       "poorQuality": 8,
       "suboptimal": 6,
       "unverifiable": 2
@@ -20,7 +20,7 @@
     {
       "id": "3",
       "name": "неврология",
-      "standart": 44,
+      "standard": 44,
       "poorQuality": 22,
       "suboptimal": 0,
       "unverifiable": 10,

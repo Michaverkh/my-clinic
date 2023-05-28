@@ -11,7 +11,7 @@ import {
 const DashboardItem = types.model("DashboardItem", {
   id: types.optional(types.string, ""),
   name: types.optional(types.string, ""),
-  standart: types.optional(types.number, 0),
+  standard: types.optional(types.number, 0),
   poorQuality: types.optional(types.number, 0),
   suboptimal: types.optional(types.number, 0),
   unverifiable: types.optional(types.number, 0),
@@ -24,7 +24,7 @@ const DashboardItemsStore = types
     items: types.array(DashboardItem),
   })
   .actions((self) => ({
-    getList: flow(function* () {
+    getList: flow(function* (params?: Record<string, any>) {
       self.loading = true;
       try {
         const res = yield apiModule.getData<
@@ -32,7 +32,7 @@ const DashboardItemsStore = types
           IDashboardResponseItemsDto
         >(
           `${EEndpoints.GET_DASHBOARD_LIST}`,
-          {},
+          { ...params },
           {
             requestValidationSchema: dashboardRequestSchema,
             responseValidationSchema: dashboardResponseItemsSchema,

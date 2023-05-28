@@ -1,7 +1,11 @@
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
 import { apiModule } from "index";
-import { IReceptionsRequestDto, IReceptionsResponseDto } from "./dto";
+import {
+  IReceptionFiltersValuesDTO,
+  IReceptionsRequestDto,
+  IReceptionsResponseDto,
+} from "./dto";
 import { paginationMapper, receptionsItemsMapper } from "./mappers";
 import {
   receptionsRequestSchema,
@@ -40,12 +44,28 @@ const ReceptionItem = types.model("ReceptionItem", {
   appointment: Appointment,
 });
 
+const FormFilterValues = types.model("FilterItem", {
+  client: types.optional(types.string, ""),
+  specialization: types.optional(
+    types.array(types.optional(types.string, "")),
+    []
+  ),
+  dateFrom: types.optional(types.string, ""),
+  dateTo: types.optional(types.string, ""),
+});
+
 const ReceptionsStore = types
   .model("Receptions", {
     loading: types.boolean,
     sortDirection: types.string,
     items: types.array(ReceptionItem),
     pagination: types.optional(Pagination, {}),
+    filterValues: types.optional(FormFilterValues, {
+      client: "",
+      specialization: ["cardiology", "otolaringology", "neurology"],
+      dateFrom: "01.01.2000",
+      dateTo: "01.01.2050",
+    }),
   })
   .views((self) => ({
     get page() {
@@ -62,6 +82,27 @@ const ReceptionsStore = types
     setLimit: (limit: number) => {
       self.pagination.limit = limit;
     },
+    setFilterValues: (filters: IReceptionFiltersValuesDTO) => {
+      self.filterValues.client = filters.client ?? "";
+      //@ts-ignore
+      self.filterValues.specialization =
+        filters.specialization && filters.specialization.length > 0
+          ? filters.specialization
+          : ["cardiology", "otolaringology", "neurology"];
+      self.filterValues.dateFrom = filters.dateFrom ?? "01.01.2000";
+      self.filterValues.dateTo = filters.dateTo ?? "01.01.2050";
+    },
+    disposeFilterValues: () => {
+      self.filterValues.client = "";
+      //@ts-ignore
+      self.filterValues.specialization = [
+        "cardiology",
+        "otolaringology",
+        "neurology",
+      ];
+      self.filterValues.dateFrom = "01.01.2000";
+      self.filterValues.dateTo = "01.01.2050";
+    },
     getList: flow(function* () {
       self.loading = true;
       try {
@@ -71,6 +112,7 @@ const ReceptionsStore = types
         >(
           `${EEndpoints.GET_RECEPTIONS_LIST}`,
           {
+            ...self.filterValues,
             limit: self.pagination.limit,
             offset: self.pagination.offset,
             sortDirection: self.sortDirection,

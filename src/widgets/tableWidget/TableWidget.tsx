@@ -42,6 +42,7 @@ export const TableWidget: FC = observer(() => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            padding: "16px",
             width: "100%",
             height: "100%",
             backgroundColor: (theme) => theme.palette.primary.light,

@@ -19,14 +19,14 @@ export const specializationOptions: IOption[] = [
 ];
 
 export const receptionInitialValues: IReceptionFiltersValues = {
-  clientId: 0,
+  client: 0,
   specialization: [],
   dateFrom: null,
   dateTo: null,
 };
 
 export const receptionFiltersSchema = yup.object().shape({
-  clientId: yup.number().typeError("Неверный формат"),
+  client: yup.number().typeError("Неверный формат"),
   dateFrom: yup.date().typeError("Ведите диапазон").required("Ведите диапазон"),
   dateTo: yup
     .date()

@@ -15,6 +15,7 @@ import { observer } from "mobx-react-lite";
 import useStore from "app/hooks/useStore";
 import { useNavigate } from "react-router-dom";
 import { RoterPath } from "shared/router/enums";
+import uuid from "react-uuid";
 
 interface IProps {
   headCells: readonly HeadCell[];
@@ -98,7 +99,7 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
                     hover
                     onClick={(event) => handleClick(event, row.id)}
                     tabIndex={-1}
-                    key={row.date}
+                    key={uuid()}
                     sx={{ cursor: "pointer" }}
                   >
                     {Object.values(row).map((val, index) => {
