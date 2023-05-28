@@ -4,9 +4,6 @@ export enum EEndpoints {
   POST_UPLOAD_DATASET = "file/import",
   GET_REPORT_EXPORT_FILE = "file/export",
   GET_DETAILED_INFO = "reception/info",
-  GET_POSTS = "posts",
-  GET_USER = "user",
-  LOGIN = "login",
 }
 
 export enum EHttpMethods {

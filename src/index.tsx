@@ -11,12 +11,6 @@ if (process.env.NODE_ENV === "development") {
   worker.start();
 }
 
-window.addEventListener("error", (event): void => {
-  // errorCollector.setError(event);
-  // eventBus.broadcast('error', event);
-  console.log("error: ", event);
-  event.preventDefault();
-});
 export const baseUrl = process.env.REACT_APP_API_URI || "";
 export const apiModule = new ApiService(baseUrl);
 

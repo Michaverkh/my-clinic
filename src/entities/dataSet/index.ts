@@ -1,7 +1,6 @@
-import { apiModule, baseUrl } from "index";
+import { baseUrl } from "index";
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
-import { IDataSetRequestDto } from "./dto";
 
 const DataSetStore = types
   .model("DataSet", {
