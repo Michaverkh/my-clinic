@@ -119,7 +119,7 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
           </Box>
           <TablePagination
             ActionsComponent={TablePaginationActions}
-            rowsPerPageOptions={[2, 5, 10, 25]}
+            rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={receptions.pagination.totalSize}
             rowsPerPage={receptions.pagination.limit}

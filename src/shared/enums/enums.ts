@@ -22,6 +22,7 @@ export enum EAppointment {
   Missing = "missing",
   Possible = "possible",
   Excess = "excess",
+  Changed = "changed",
 }
 
 export enum EReceptionRu {
@@ -29,4 +30,12 @@ export enum EReceptionRu {
   poorQuality = "не соответствует качество",
   suboptimal = "не оптимальное",
   unverifiable = "диагноза нет в базе",
+}
+
+export enum EDowloadingState {
+  Loading = "loading",
+  Loaded = "loaded",
+  Error = "error",
+  Nop = "nop",
+  Canceled = "canceled",
 }

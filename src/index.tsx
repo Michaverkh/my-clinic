@@ -17,7 +17,8 @@ window.addEventListener("error", (event): void => {
   console.log("error: ", event);
   event.preventDefault();
 });
-export const apiModule = new ApiService("http://localhost:3000/");
+export const baseUrl = process.env.REACT_APP_API_URI || "";
+export const apiModule = new ApiService(baseUrl);
 
 const store = RootStore.create({});
 export const StoreContext = createContext(store);

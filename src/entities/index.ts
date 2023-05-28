@@ -5,6 +5,8 @@ import { ReceptionsStore } from "./receptions";
 import { DashboardItemsStore } from "./dashboard";
 import { DataSetStore } from "./dataSet";
 import { DetailedStore } from "./detailed";
+import { ReportStore } from "./report";
+import { EDowloadingState } from "shared/enums/enums";
 
 const RootStore = types.model("RootStore", {
   posts: types.optional(PostsStore, { loading: false }),
@@ -14,7 +16,7 @@ const RootStore = types.model("RootStore", {
 
   receptions: types.optional(ReceptionsStore, {
     loading: false,
-    sortDirection: "ask",
+    sortDirection: "asc",
   }),
 
   dashboardItems: types.optional(DashboardItemsStore, { loading: false }),
@@ -23,6 +25,7 @@ const RootStore = types.model("RootStore", {
     loading: false,
     isSuccess: true,
   }),
+  report: types.optional(ReportStore, { state: EDowloadingState.Nop }),
 });
 
 export default RootStore;
