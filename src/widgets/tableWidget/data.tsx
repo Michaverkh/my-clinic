@@ -2,6 +2,7 @@ import { Status } from "features";
 import { Data, HeadCell } from "features/Table/interfaces";
 
 export const createData = (
+  id: string,
   date: string,
   spec: string,
   doctor: string,
@@ -9,6 +10,7 @@ export const createData = (
   nazn: number,
   type: string[]
 ): Data => ({
+  id,
   date,
   spec,
   doctor,
