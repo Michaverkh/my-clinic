@@ -30,3 +30,11 @@ export enum EReceptionRu {
   suboptimal = "не оптимальное",
   unverifiable = "диагноза нет в базе",
 }
+
+export enum EDowloadingState {
+  Loading = "loading",
+  Loaded = "loaded",
+  Error = "error",
+  Nop = "nop",
+  Canceled = "canceled",
+}

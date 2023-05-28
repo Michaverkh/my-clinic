@@ -32,6 +32,9 @@ export const handlers = [
   rest.get(EEndpoints.GET_DASHBOARD_LIST, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(dashboardItems), ctx.delay(2000));
   }),
+  rest.get(EEndpoints.GET_REPORT_EXPORT_FILE, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dashboardItems), ctx.delay(2000));
+  }),
   rest.post(EEndpoints.POST_UPLOAD_DATASET, (req, res, ctx) => {
     return res(
       ctx.status(200),

@@ -1,21 +1,61 @@
-import { Button, Link } from "@mui/material";
+import { Button, IconButton, Link, Snackbar } from "@mui/material";
 import { FC } from "react";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
-import { EEndpoints } from "shared/api/enums";
+import useStore from "app/hooks/useStore";
+import { observer } from "mobx-react-lite";
+import { EDowloadingState } from "shared/enums/enums";
+import CloseIcon from "@mui/icons-material/Close";
 
-export const ExportBtn: FC = () => {
-  const timeStamp = new Date().getTime();
+export const ExportBtn: FC = observer(() => {
+  const timeStamp = new Date().getTime().toString();
+  const { report } = useStore();
+
+  const handleClick = () => {
+    report.getReport(timeStamp);
+  };
+
   return (
-    <Link
-      href={EEndpoints.GET_REPORT_EXPORT_FILE}
-      target="_blank"
-      rel="noreferrer"
-      underline="none"
-      download={`${timeStamp}.xlsx`}
-    >
-      <Button color="secondary" startIcon={<SaveAltIcon />}>
+    <>
+      <Button
+        onClick={handleClick}
+        color="secondary"
+        startIcon={<SaveAltIcon />}
+      >
         Экспортировать
       </Button>
-    </Link>
+      <Snackbar
+        open={report.state === EDowloadingState.Loading}
+        autoHideDuration={6000}
+        message="Подготовка файла отчета"
+        action={
+          <Button color="error" onClick={report.cancelDownload}>
+            Отменить
+          </Button>
+        }
+      />
+      <Snackbar
+        open={report.state === EDowloadingState.Loaded}
+        autoHideDuration={6000}
+        message="Отчет готов для скачивания"
+        action={
+          <>
+            <Button
+              color="secondary"
+              onClick={report.handleDownloadReportClick}
+            >
+              Скачать
+            </Button>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              sx={{ p: 0.5 }}
+              onClick={report.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          </>
+        }
+      />
+    </>
   );
-};
+});
