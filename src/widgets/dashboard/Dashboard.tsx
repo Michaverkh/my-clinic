@@ -9,6 +9,15 @@ export interface IDashBoard {
   axisLeftText?: string;
 }
 
+const colors = {
+  "диагноза нет в базе": "#DCC6C8",
+  "не оптимальное": "#3599BA",
+  "не соответствует качество": "#BC2637",
+  "соответствует стандарту": "#20CB7E",
+};
+//@ts-ignore
+const getColor = (bar) => colors[bar.id];
+
 export const DashBoard: FC<IDashBoard> = ({
   dashBoardRenderData,
   axisBottomText = "X",
@@ -20,6 +29,7 @@ export const DashBoard: FC<IDashBoard> = ({
     <ResponsiveBar
       //@ts-ignore
       data={dashBoardRenderData}
+      colors={getColor}
       keys={dashbordKeys}
       indexBy="name"
       theme={{
@@ -67,7 +77,6 @@ export const DashBoard: FC<IDashBoard> = ({
       padding={0.1}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
-      colors={{ scheme: "nivo" }}
       borderColor={{
         from: "color",
         modifiers: [["darker", 1.6]],
