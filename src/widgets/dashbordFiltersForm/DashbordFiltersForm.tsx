@@ -87,7 +87,7 @@ export const DashbordFiltersForm: FC = () => {
                 color="info"
                 variant="contained"
                 onClick={() => {
-                  dashboardItems.getList();
+                  dashboardItems.getList({ section: "specialization" });
                   handleReset();
                 }}
                 sx={{ marginRight: "16px" }}

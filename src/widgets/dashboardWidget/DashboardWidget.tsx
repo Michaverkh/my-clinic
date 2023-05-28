@@ -11,7 +11,7 @@ export const DashboardWidget: FC = observer(() => {
   const { dashboardItems } = useStore();
 
   useEffect(() => {
-    dashboardItems.getList();
+    dashboardItems.getList({ section: "specialization" });
   }, []);
 
   interface IDashboardRenderData {
