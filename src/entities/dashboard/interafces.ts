@@ -1,7 +1,7 @@
 export interface IDashBoardData {
   id: string;
   name: string;
-  standart: number;
+  standard: number;
   poorQuality: number;
   suboptimal: number;
   unverifiable: number;

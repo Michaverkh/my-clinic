@@ -27,7 +27,7 @@ export const DashboardWidget: FC = observer(() => {
     dashboardItems.items.forEach((item) => {
       const result: IDashBoardRenderData = {
         name: item.name,
-        [EReceptionRu.standart]: item.standart,
+        [EReceptionRu.standard]: item.standard,
         [EReceptionRu.poorQuality]: item.poorQuality,
         [EReceptionRu.suboptimal]: item.suboptimal,
         [EReceptionRu.unverifiable]: item.unverifiable,

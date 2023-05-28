@@ -10,7 +10,7 @@ const dashboardItemsDataMapper = (
   const schema: IDashboardSchema = {
     id: "id",
     name: "name",
-    standart: "standart",
+    standard: "standard",
     poorQuality: "poorQuality",
     suboptimal: "suboptimal",
     unverifiable: "unverifiable",
