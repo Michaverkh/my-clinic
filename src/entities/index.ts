@@ -4,6 +4,7 @@ import { UserStore } from "./user";
 import { ReceptionsStore } from "./receptions";
 import { DashboardItemsStore } from "./dashboard";
 import { DataSetStore } from "./dataSet";
+import { DetailedStore } from "./detailed";
 
 const RootStore = types.model("RootStore", {
   posts: types.optional(PostsStore, { loading: false }),
@@ -18,6 +19,7 @@ const RootStore = types.model("RootStore", {
 
   dashboardItems: types.optional(DashboardItemsStore, { loading: false }),
   dataSet: types.optional(DataSetStore, { loading: false, isSuccess: false }),
+  detailed: types.optional(DetailedStore, { loading: false }),
 });
 
 export default RootStore;
