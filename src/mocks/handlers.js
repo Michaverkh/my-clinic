@@ -2,6 +2,7 @@ import { rest } from "msw";
 import receptions from "./data/receptions.json";
 import dashboardItems from "./data/dashboardItems.json";
 import importDataSetResponse from "./data/importDataSetResponse.json";
+import detailed from "./data/detailed.json";
 import { EEndpoints } from "shared/api/enums";
 
 export const handlers = [
@@ -38,5 +39,8 @@ export const handlers = [
       ctx.json(importDataSetResponse),
       ctx.delay(1000)
     );
+  }),
+  rest.get(`${EEndpoints.GET_DETAILED_INFO}/:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(detailed), ctx.delay(2000));
   }),
 ];

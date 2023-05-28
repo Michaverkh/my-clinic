@@ -36,23 +36,28 @@ const DetailedStore = types
   .model("Detailed", {
     loading: types.boolean,
     item: types.optional(Item, {}),
+    isSuccess: types.boolean,
   })
   .actions((self) => ({
-    getList: flow(function* () {
+    getInfo: flow(function* (id: number) {
       self.loading = true;
       try {
         const res = yield apiModule.getData<
           IDetailedRequestDto,
           IDetailedResponseDto
         >(
-          `${EEndpoints.GET_RECEPTIONS_LIST}`,
+          `${EEndpoints.GET_DETAILED_INFO}/${id}`,
           {},
           {
             requestValidationSchema: detailedRequestSchema,
             responseValidationSchema: detailedResponseSchema,
           }
         );
+
         self.item = yield detailedMapper(res);
+        if (!res) {
+          self.isSuccess = false;
+        }
       } finally {
         self.loading = false;
       }

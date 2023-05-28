@@ -1,6 +1,6 @@
 import morphism, { Schema } from "morphism";
 import { IDetailedResponseDto } from "../dto";
-import { IPaginationParams, IReceptions } from "../interafces";
+import { IReceptions } from "../interafces";
 
 export const detailedMapper = async (
   source: IDetailedResponseDto
@@ -16,6 +16,6 @@ export const detailedMapper = async (
   // @ts-ignore
   return await new Promise((res) =>
     // @ts-ignore
-    res(morphism<IDetailedSchema>(schema, source).items)
+    res(morphism<IDetailedSchema>(schema, source))
   );
 };

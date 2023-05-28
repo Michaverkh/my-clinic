@@ -52,7 +52,6 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
    * @param name
    */
   const handleClick = (event: React.MouseEvent<unknown>, id: string) => {
-    console.log(id);
     navigate(RoterPath.DETAILED_INFO, { state: { id } });
   };
 

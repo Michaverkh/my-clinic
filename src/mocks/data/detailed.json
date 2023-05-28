@@ -3,7 +3,7 @@
     "date": "2023-04-24",
     "id": 1,
     "diagnosis": "J32.9 Хронический синусит неуточненный",
-    "status": null
+    "status": "standard"
   },
   "doctor": {
     "specialization": "врач-оториноларинголог",

@@ -18,7 +18,7 @@ const RootStore = types.model("RootStore", {
   }),
 
   dashboardItems: types.optional(DashboardItemsStore, { loading: false }),
-  detailed: types.optional(DetailedStore, { loading: false }),
+  detailed: types.optional(DetailedStore, { loading: false, isSuccess: true }),
   dataSet: types.optional(DataSetStore, {
     loading: false,
     isSuccess: true,
