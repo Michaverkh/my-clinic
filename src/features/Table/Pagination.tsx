@@ -12,7 +12,6 @@ interface TablePaginationActionsProps {
 }
 
 export function TablePaginationActions(props: TablePaginationActionsProps) {
-  const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
   return (
@@ -21,7 +20,7 @@ export function TablePaginationActions(props: TablePaginationActionsProps) {
         page={page + 1}
         variant="outlined"
         shape="rounded"
-        count={Math.round(count / rowsPerPage) + 1}
+        count={Math.round(count / rowsPerPage)}
         showFirstButton
         showLastButton
         onChange={(event: any, page) => onPageChange(event, page - 1)}

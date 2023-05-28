@@ -22,6 +22,7 @@ export enum EAppointment {
   Missing = "missing",
   Possible = "possible",
   Excess = "excess",
+  Changed = "changed",
 }
 
 export enum EReceptionRu {

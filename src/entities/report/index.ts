@@ -1,3 +1,4 @@
+import { baseUrl } from "index";
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
 import { EDowloadingState } from "shared/enums/enums";
@@ -14,7 +15,7 @@ const ReportStore = types
       self.state = EDowloadingState.Loading;
       try {
         const response = yield fetch(
-          `${EEndpoints.GET_REPORT_EXPORT_FILE}`,
+          `${baseUrl}${EEndpoints.GET_REPORT_EXPORT_FILE}`,
           {}
         );
         if (self.state === EDowloadingState.Canceled) {
