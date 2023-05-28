@@ -1,6 +1,7 @@
+import { apiModule } from "index";
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
-import { apiModule } from "index";
+import { IDataSetRequestDto } from "./dto";
 
 const DataSetStore = types
   .model("DataSet", {
@@ -8,21 +9,44 @@ const DataSetStore = types
     isSuccess: types.boolean,
   })
   .actions((self) => ({
-    sendFile: flow(function* (uploadedFile: File) {
+    sendFile: flow(function* (formData: FormData) {
       self.loading = true;
       self.isSuccess = false;
 
       try {
-        const res = yield apiModule.postData(
-          `${EEndpoints.POST_UPLOAD_DATASET}`,
-          { file: uploadedFile },
-          {}
-        );
-        self.isSuccess = res.status ? !!res.status : false;
+        // Через apiModule файл не загружается
+        // to do: сделать через apiModule
+
+        const res = yield fetch(`${EEndpoints.POST_UPLOAD_DATASET}`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = yield res.json();
+
+        console.log("result", result);
+
+        self.isSuccess = result.isSuccess ? true : false;
       } finally {
         self.loading = false;
       }
     }),
+
+    // sendFile: flow(function* (formData: FormData) {
+    //   self.loading = true;
+    //   self.isSuccess = false;
+    //   try {
+    //     const res = yield apiModule.postData<FormData, IDataSetRequestDto>(
+    //       `${EEndpoints.POST_UPLOAD_DATASET}`,
+    //       { ...formData },
+    //       {}
+    //     );
+    //     // const result = yield res;
+    //     self.isSuccess = res.isSuccess ? true : false;
+    //   } finally {
+    //     self.loading = false;
+    //   }
+    // }),
   }));
 
 export { DataSetStore };

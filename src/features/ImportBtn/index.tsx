@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FC, useRef } from "react";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import useStore from "app/hooks/useStore";
@@ -10,24 +10,19 @@ export const ImportBtn: FC = observer(() => {
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as FileList;
-    const file = files[0];
-    dataSet.sendFile(file);
+    const formData = new FormData();
+    formData.append("file", files[0]);
+
+    dataSet.sendFile(formData);
   };
 
   return (
     <>
       {dataSet.loading ? (
-        <>
-          <CircularProgress
-            sx={{
-              marginRight: "16px",
-            }}
-          />
-          <Typography>
-            Подождите, загрузка может занять некоторое время
-          </Typography>
-        </>
-      ) : (
+        <Button color="secondary" startIcon={<UploadFileIcon />}>
+          <Typography>Загрузка...</Typography>
+        </Button>
+      ) : dataSet.isSuccess ? (
         <>
           <Button
             color="secondary"
@@ -46,6 +41,10 @@ export const ImportBtn: FC = observer(() => {
             onChange={handleUpload}
           />
         </>
+      ) : (
+        <Typography variant="h6">
+          При загрузке данных произошла ошибка.
+        </Typography>
       )}
     </>
   );

@@ -17,12 +17,15 @@ import {
   specializationOptions,
 } from "./constants";
 import { handleSubmit } from "./handlers";
+import useStore from "app/hooks/useStore";
 
 export const DashbordFiltersForm: FC = () => {
+  const { dashboardItems } = useStore();
+
   return (
     <Box>
       <Formik
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(dashboardItems.getList)}
         initialValues={dashboardInitialValues}
         validationSchema={dashboardFiltersSchema}
       >
@@ -70,19 +73,23 @@ export const DashbordFiltersForm: FC = () => {
                 </Select>
               </FormControl>
               <FormikDatePicker label="Дата от" name="dateFrom" />
-              <FormikDatePicker label="Дата до" name="dateTo" />
-              {!!touched.dateTo && !!errors.dateTo && (
-                <Typography variant="h6">{errors.dateTo}</Typography>
-              )}
               {!!touched.dateFrom && !!errors.dateFrom && (
                 <Typography variant="h6">{errors.dateFrom}</Typography>
+              )}
+              <FormikDatePicker label="Дата до" name="dateTo" />
+
+              {!!touched.dateTo && !!errors.dateTo && (
+                <Typography variant="h6">{errors.dateTo}</Typography>
               )}
             </Box>
             <Box display="flex" justifyContent="flex-end" mt="20px">
               <Button
                 color="info"
                 variant="contained"
-                onClick={handleReset}
+                onClick={() => {
+                  dashboardItems.getList({ section: "specialization" });
+                  handleReset();
+                }}
                 sx={{ marginRight: "16px" }}
               >
                 Сбросить

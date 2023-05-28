@@ -13,6 +13,7 @@ import { FC } from "react";
 import { TablePaginationActions } from "./Pagination";
 import { observer } from "mobx-react-lite";
 import useStore from "app/hooks/useStore";
+import uuid from "react-uuid";
 
 interface IProps {
   headCells: readonly HeadCell[];
@@ -94,7 +95,7 @@ export const EnhancedTable: FC<IProps> = observer(({ headCells, rows }) => {
                     hover
                     onClick={(event) => handleClick(event, row.date)}
                     tabIndex={-1}
-                    key={row.date}
+                    key={uuid()}
                     sx={{ cursor: "pointer" }}
                   >
                     {Object.values(row).map((val) => (

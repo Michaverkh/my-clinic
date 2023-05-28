@@ -35,7 +35,7 @@ export const receptionsRequestSchema = object({
   sortDirection: string().optional().default("ask"),
   dateFrom: string().optional(),
   dateTo: string().optional(),
-  specialization: string().optional(),
+  specialization: array().of(string()).optional(),
   client: string().optional(),
 });
 

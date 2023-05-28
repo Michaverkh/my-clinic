@@ -51,7 +51,6 @@ const GrayBox = styled(Box)({
 });
 
 export const Status: FC<{ status: string[] }> = ({ status }) => {
-  console.log(JSON.stringify(status));
   return (
     <Box sx={{ display: "flex" }}>
       {status.includes(EAppointment.Excess) && (
