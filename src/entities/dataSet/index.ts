@@ -1,7 +1,5 @@
-import { apiModule } from "index";
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
-import { IDataSetRequestDto } from "./dto";
 
 const DataSetStore = types
   .model("DataSet", {
@@ -31,22 +29,6 @@ const DataSetStore = types
         self.loading = false;
       }
     }),
-
-    // sendFile: flow(function* (formData: FormData) {
-    //   self.loading = true;
-    //   self.isSuccess = false;
-    //   try {
-    //     const res = yield apiModule.postData<FormData, IDataSetRequestDto>(
-    //       `${EEndpoints.POST_UPLOAD_DATASET}`,
-    //       { ...formData },
-    //       {}
-    //     );
-    //     // const result = yield res;
-    //     self.isSuccess = res.isSuccess ? true : false;
-    //   } finally {
-    //     self.loading = false;
-    //   }
-    // }),
   }));
 
 export { DataSetStore };

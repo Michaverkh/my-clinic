@@ -21,13 +21,6 @@ export const handlers = [
     if (sort === "desk") {
       response.items.reverse();
     }
-    // @ts-ignore
-    // const arr = req.body?.status || [];
-    // const resp = arr?.length
-    //   ? response.body.items.filter((item) => {
-    //       return arr?.includes(item.status);
-    //     })
-    //   : response.body.tasks;
     return res(ctx.status(200), ctx.json(response), ctx.delay(1000));
   }),
   rest.get(EEndpoints.GET_DASHBOARD_LIST, (req, res, ctx) => {

@@ -1,4 +1,4 @@
-import { createTheme, experimental_sx as sx } from "@mui/material";
+import { createTheme } from "@mui/material";
 import { DARK1, FLAME1, LIGHT1, SKY1, MOUNTAIN4, MOUNTAIN1 } from "./colors";
 
 declare module "@mui/material/Button" {
@@ -40,61 +40,19 @@ export const theme = createTheme({
     h5: { fontSize: 14, fontWeight: "400", color: MOUNTAIN1 },
     h6: { fontSize: 14, fontWeight: "400", color: FLAME1 },
     body1: { fontSize: 16 },
-    // bodyBold: {
-    //   fontSize: 16,
-    //   fontWeight: 'bold',
-    // },
-    // small: { fontSize: 12 },
-    // smallBold: {
-    //   fontSize: 12,
-    //   fontWeight: 'bold',
-    // },
   },
-  //   overrides: {
-  //     MuiCard: {
-  //       root: {
-  //         borderRadius: 8,
-  //       },
-  //     },
-  //   },
   components: {
     MuiTypography: {
-      //   styleOverrides: {
-      //     // Name of the slot
-      //     root: {
-      //       // Some CSS
-      //       fontSize: '2rem',
-      //     },
-      //   },
       variants: [
         {
           props: { variant: "h1" },
-          style: {
-            //   color: grey[200],
-            // fontSize: 70,
-            // fontWeight: 800,
-            // textShadow: '2px 2px black',
-          },
+          style: {},
         },
         {
           props: { variant: "h2" },
-          style: {
-            // display: 'none',
-            // fontSize: "10px!important",
-          },
-          //   style: {
-          //     //   color: grey[200],
-          //     fontSize: 70,
-          //     // fontWeight: 800,
-          //     // textShadow: '2px 2px black',
-          //   },
+          style: {},
         },
       ],
-      //   defaultProps: {
-      //     style: {
-      //       textAlign: 'right',
-      //     },
-      //   },
     },
     MuiButton: {
       variants: [
