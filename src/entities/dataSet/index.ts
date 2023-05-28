@@ -1,4 +1,4 @@
-import { apiModule } from "index";
+import { apiModule, baseUrl } from "index";
 import { flow, types } from "mobx-state-tree";
 import { EEndpoints } from "shared/api/enums";
 import { IDataSetRequestDto } from "./dto";
@@ -17,36 +17,18 @@ const DataSetStore = types
         // Через apiModule файл не загружается
         // to do: сделать через apiModule
 
-        const res = yield fetch(`${EEndpoints.POST_UPLOAD_DATASET}`, {
+        const res = yield fetch(`${baseUrl}${EEndpoints.POST_UPLOAD_DATASET}`, {
           method: "POST",
           body: formData,
         });
 
         const result = yield res.json();
 
-        console.log("result", result);
-
         self.isSuccess = result.isSuccess ? true : false;
       } finally {
         self.loading = false;
       }
     }),
-
-    // sendFile: flow(function* (formData: FormData) {
-    //   self.loading = true;
-    //   self.isSuccess = false;
-    //   try {
-    //     const res = yield apiModule.postData<FormData, IDataSetRequestDto>(
-    //       `${EEndpoints.POST_UPLOAD_DATASET}`,
-    //       { ...formData },
-    //       {}
-    //     );
-    //     // const result = yield res;
-    //     self.isSuccess = res.isSuccess ? true : false;
-    //   } finally {
-    //     self.loading = false;
-    //   }
-    // }),
   }));
 
 export { DataSetStore };
